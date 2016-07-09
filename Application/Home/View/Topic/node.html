@@ -1,0 +1,138 @@
+<extend name="Public:base"/>
+<extend name="Public:sidebar"/>
+<block name="title"><title>节点：{$node} - Airex</title></block>
+<block name="css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/node.css">
+</block>
+
+
+<block name="page-main">
+
+    <!--  节点信息  -->
+    <div class="media node">
+        <div class="right-top">
+			<span class="node-num">主题总数
+
+                <!--    主题总数     -->
+				<a class="links" href=""><strong>{$nodeInfo.topic_num}</strong></a>&nbsp;•&nbsp;
+
+				<button class="add-favorite btn btn-link btn-xs">加入收藏</button>
+			</span>
+
+        </div>
+
+        <div class="media-left">
+
+            <!--    节点图片     -->
+            <a href="#">
+                <img width="73" src="__PUBLIC__/{$nodeInfo.logo_path}">
+            </a>
+
+        </div>
+        <div class="media-body ">
+
+            <!--    节点名称     -->
+            <h5 class="media-heading"><a href="__ROOT__/">Airex</a>&nbsp; › {$node}</h5>
+
+            <!--    节点简介     -->
+            <span class="des">{$nodeInfo.desc}</span>
+
+            <a href="{:U('topic/add',array('nid'=>$nodeInfo['id']))}" class="newtheme btn btn-primary btn-xs">新建主题</a>
+        </div>
+    </div>
+
+
+    <!--   主题模板   -->
+    <volist name="topics['lists']" id="topic">
+        <div class="node-theme media">
+            <div class="media-left">
+                <!--    头像     -->
+                <a href="#">
+                    <img width="48" class="img-rounded" src="__PUBLIC__{$topic.imgpath}">
+                </a>
+            </div>
+            <div class="theme-contain media-body">
+                <span class="comments-num badge">{$topic.comments}</span>
+
+                <!--  主题链接  -->
+                <a class="theme-link" href="{:U('Topic/detail',['tid'=>$topic['tid']])}"><h5 class="media-heading">
+                    {$topic.title}</h5></a>
+
+                <div class="theme-info" style="font-size:12px;">
+
+                    <!--  创建主题用户  -->
+                    <a class="links theme-creater" href="{:U('User/info',['member'=>$topic['user_name']])}"><strong>{$topic.user_name}</strong></a>
+                    •
+                    <!--    最后回复时间     -->
+                    <span class="time">{$topic.last_comment_time}</span>
+
+                    <!--  最后回复用户  -->
+                    <if condition="$topic['last_comment_user'] != null">
+                        • 最后回复来自:<strong><a href="{:U('User/info',['member'=>$topic['last_comment_user']])}" title=""
+                                            style="color: black;">{$topic.last_comment_user}</a></strong>
+                    </if>
+                </div>
+            </div>
+        </div>
+    </volist>
+
+
+</block>
+
+<block name="sidebar">
+
+    <include file="Public:sidebar" mode="all"/>
+
+</block>
+
+<block name="js">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var actives = $('#navbar ul li'),
+                    now = new Date();
+            actives.eq(0).addClass('nav-active');
+
+            console.time("each");
+
+            function getTime() {
+                var old = new Date($(this).text().replace(/-/g, '/')),	//Firefox时间格式要求
+                        dif = now - old,
+                        day = Math.floor(dif / (24 * 3600 * 1000)),
+                        hour = Math.floor(dif / (3600 * 1000)),
+                        min = Math.floor(dif / (60 * 1000)),
+                        second = Math.floor(dif / (1000)),
+
+                        nowYear = now.getFullYear(),
+                        oldYear = old.getFullYear(),
+                        nowMonth = now.getMonth(),
+                        oldMonth = old.getMonth();
+
+                if (second < 60) {
+                    $(this).text(second + " 秒前");
+                } else if (min < 60) {
+                    $(this).text(min + ' 分钟前');
+                } else if (hour < 24) {
+                    $(this).text(hour + ' 小时 ' + (min - hour * 60) + ' 分钟前');
+                } else if (day < 32) {
+                    $(this).text(day + ' 天前');
+                } else if (day < 366) {
+                    if (nowYear === oldYear) {
+                        $(this).text(nowMonth - oldMonth + ' 个月前');
+                    } else {
+                        $(this).text(nowMonth - oldMonth + 12 + ' 个月前')
+                    }
+                } else {
+                    $(this).text(now.getFullYear() - old.getFullYear() + " 年前");
+
+                }
+                $(this).show();
+                console.log(now, old);
+            }
+
+            $('.time').each(getTime);
+        });
+    </script>
+
+</block>
+
+	

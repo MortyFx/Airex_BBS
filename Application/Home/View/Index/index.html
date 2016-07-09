@@ -1,0 +1,121 @@
+<extend name="Public:base"/>
+
+
+<block name="title"><title>Airex</title></block>
+
+<block name="page-main">
+    <ul class="nav nav-pills nav-tags" role="tablist">
+        <!-- 展示分类 -->
+        <volist name="categorys" id="cate">
+            <li role="presentation"><a href="__ACTION__?cat={$cate}">{$cate}</a></li>
+        </volist>
+    </ul>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="margin:0 7px;padding:0 7px;">
+            <!-- 相应节点展示 -->
+            <volist name="nodes" id="node">
+                <a class="nav-nodes" href="{:U('node/topics',['node'=>$node['node_name']])}" style="font-size:12px;margin-right:7px">{$node.node_name}</a>
+            </volist>
+        </div>
+        <div class="panel-body">
+            <!--  展示该分类下部分文章 -->
+            <if condition="$topics['lists'] eq null"><span style="float:left">此节点暂无主题</span></if>
+            <volist name="topics['lists']" id="topic">
+                <div class="media each-area">
+                    <div class="media-left">
+                        <a href="{:U('User/info',['member'=>$topic['user_name']])}">
+                            <img class="media-object index-img" src="__PUBLIC__{$topic.imgpath}" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading index-title">
+                            <a href="{:U('topic/detail',['tid'=>$topic['tid']])}" title="">{$topic.title}</a>
+                        </h4>
+                        <a href="{:U('node/topics',['node'=>$topic['node_name']])}" title=""
+                           style="font-size:12px;background: #f5f5f5">{$topic.node_name}</a><em>.</em>
+                        <strong><a href="{:U('User/info',['member'=>$topic['user_name']])}" title=""
+                                   style="font-size:12px;color: black;">{$topic.user_name}</a></strong><em>.</em>
+                        <span class="time" style="font-size:12px;color: #CDCFD7">{$topic.last_comment_time}</span>
+		    <span style="font-size:12px;color: #CDCFD7">
+			<if condition="$topic['last_comment_user'] != null">
+                <em>.</em>&nbsp;最后回复来自&nbsp;<strong><a href="{:U('User/info',['member'=>$topic['last_comment_user']])}"
+                                                       title=""
+                                                       style="color: black;">{$topic.last_comment_user}</a></strong></span>
+                        </if>
+                        <span class="badge" style="float:right">{$topic.comments}</span>
+                    </div>
+                </div>
+                <hr>
+            </volist>
+
+            <!-- 分页 -->
+            <nav class="col-md-6 col-md-offset-3">
+                {$topics.show}
+            </nav>
+
+        </div>
+    </div>
+
+</block>
+
+<block name="sidebar">
+
+    <include file="Public:sidebar" mode="all"/>
+
+</block>
+
+<block name="js">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var actives = $('#navbar ul li'),
+                    now = new Date();
+            actives.eq(0).addClass('nav-active');
+
+            console.time("each");
+
+            function getTime() {
+                var old = new Date($(this).text().replace(/-/g, '/')),	//Firefox时间格式要求
+                        dif = now - old,
+                        day = Math.floor(dif / (24 * 3600 * 1000)),
+                        hour = Math.floor(dif / (3600 * 1000)),
+                        min = Math.floor(dif / (60 * 1000)),
+                        second = Math.floor(dif / (1000)),
+
+                        nowYear = now.getFullYear(),
+                        oldYear = old.getFullYear(),
+                        nowMonth = now.getMonth(),
+                        oldMonth = old.getMonth();
+
+                if (second < 60) {
+                    $(this).text(second + " 秒前");
+                } else if (min < 60) {
+                    $(this).text(min + ' 分钟前');
+                } else if (hour < 24) {
+                    $(this).text(hour + ' 小时 ' + (min - hour * 60) + ' 分钟前');
+                } else if (day < 32) {
+                    $(this).text(day + ' 天前');
+                } else if (day < 366) {
+                    if (nowYear === oldYear) {
+                        $(this).text(nowMonth - oldMonth + ' 个月前');
+                    } else {
+                        $(this).text(nowMonth - oldMonth + 12 + ' 个月前')
+                    }
+                } else {
+                    $(this).text(now.getFullYear() - old.getFullYear() + " 年前");
+
+                }
+                $(this).show();
+                console.log(now, old);
+            }
+
+            $('.time').each(getTime);
+
+
+            $('ul.nav-tags li a').each(function () {
+                if ($(this).text() == "{$activeCat|default='技术'}") {
+                    $(this).parent('li').addClass('active');
+                }
+            });
+        });
+    </script>
+</block>

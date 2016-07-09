@@ -1,0 +1,258 @@
+<extend name="Public:base"/>
+<block name="title">
+    <title>设置 - Airex</title>
+</block>
+
+<block name="css">
+
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/setting.css">
+</block>
+
+<block name="page-main">
+
+    <!--     基本信息设置      -->
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <span ">用户信息设置</span>
+            </div>
+            <div class="panel-body">
+
+                <!--    表单    -->
+                <form class="form-horizontal">
+                    <!--    用户名    -->
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-3 control-label" for="new-username">用户名</label>
+                        <div class="col-sm-9">
+                            <span class="stable">{$Think.session.user}</span>
+                        </div>
+                    </div>
+                    <!--    邮件    -->
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-3 control-label" for="new-email">电子邮件</label>
+                        <div class="col-sm-9">
+                            <span class="stable">{$data['userInfo']['email']}</span>
+                        </div>
+                    </div>
+                    <!--    性别    -->
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-3 control-label">性别</label>
+                        <select name="gender" class="form-control">
+                            <option value="保密"
+                            <if condition="$data['userInfo']['gender'] eq '保密'">selected="selected"</if>
+                            >保密</option>
+                            <option value="男"
+                            <if condition="$data['userInfo']['gender'] eq '男'">selected="selected"</if>
+                            >男</option>
+                            <option value="女"
+                            <if condition="$data['userInfo']['gender'] eq '女'">selected="selected"</if>
+                            >女</option>
+                        </select>
+                    </div>
+                    <!--   个人网站    -->
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-3 control-label" for="new-site">个人网站</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="url" class="form-control" id="new-site"
+                                   value="{$data['userInfo']['url']}" placeholder="您的个人网站URL，可不填"></div>
+                    </div>
+
+                    <!--&lt;!&ndash;   社交账号   &ndash;&gt;-->
+                    <!--<div class="form-group form-group-sm">-->
+                    <!--<label class="col-sm-3 control-label" for="twitter"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_twitter.png">twitter</label>-->
+                    <!--<div class="col-sm-9">-->
+                    <!--<input type="text" name="twitter" class="form-control" id="twitter" value="{$data['userInfo']['url']}" placeholder=""></div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group form-group-sm">-->
+                    <!--<label class="col-sm-3 control-label" for="steam"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_steam.png">steam</label>-->
+                    <!--<div class="col-sm-9">-->
+                    <!--<input type="text" name="steam" class="form-control" id="steam" value="{$data['userInfo']['url']}" placeholder=""></div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group form-group-sm">-->
+                    <!--<label class="col-sm-3 control-label" for="Instagram"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_instagram.png">Instagram</label>-->
+                    <!--<div class="col-sm-9">-->
+                    <!--<input type="text" name="Instagram" class="form-control" id="Instagram" value="{$data['userInfo']['url']}" placeholder=""></div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group form-group-sm">-->
+                    <!--<label class="col-sm-3 control-label" for="Telegram"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_telegram.png">Telegram</label>-->
+                    <!--<div class="col-sm-9">-->
+                    <!--<input type="text" name="Telegram" class="form-control" id="Telegram" value="{$data['userInfo']['url']}" placeholder=""></div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group form-group-sm">-->
+                    <!--<label class="col-sm-3 control-label" for="Github"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_github.png">Github</label>-->
+                    <!--<div class="col-sm-9">-->
+                    <!--<input type="text" name="Github" class="form-control" id="Github" value="{$data['userInfo']['url']}" placeholder=""></div>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;   社交账号end   &ndash;&gt;-->
+
+                    <!--   个人简介    -->
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-3 control-label" for="new-intro">个人简介</label>
+                        <div class="col-sm-9">
+							<textarea rows="5" cols="20" type="text" name="resume" class="form-control" id="new-intro"
+                                      placeholder="您50字以内的个人简介，可不填">{$data['userInfo']['resume']}</textarea>
+                        </div>
+                    </div>
+
+                    <!-- 表单提交按钮 -->
+                    <div>
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-9">
+                            <button formmethod="post" formaction=" " class="btn btn-primary" type="submit"
+                                    id="submit-btn">
+                                <span>修改</span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+
+        <!--      上传头像     -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span">修改头像</span>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-3 control-label icon-up">头像上传</label>
+                        <div class="col-sm-9">
+                            <div>
+                                <img src="__PUBLIC__{$data['userInfo']['imgpath']}"></div>
+                            <!--<input type="file" name="new-icon" class="input-sm">-->
+                            <a href="{:U('User/avatar')}">
+                                <button id="avatar-btn" class="btn btn-primary" type="button">
+                                    修改头像
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+
+        <!--      修改密码     -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span>修改密码</span>
+            </div>
+            <div class="panel-body">
+                <!--    表单    -->
+                <form class="form-horizontal">
+
+                    <!--    密码    -->
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-3 control-label" for="new-psw">修改密码</label>
+                        <div class="col-sm-9">
+                            <input type="password" name="password" class="psw form-control" id="new-psw"
+                                   placeholder="请输入新密码">
+                            <span class="tip" id="psw-tip">两次输入密码不一致</span>
+                            <span class="tip" id="psw-tip-length">密码长度应不小于6位</span>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-3 control-label" for="new-psw-repeat">确认新的密码</label>
+                        <div class="col-sm-9">
+                            <input type="password" name="password_r" class="psw form-control" id="new-psw-repeat"
+                                   placeholder="请再次输入新密码"></div>
+                    </div>
+
+                    <!-- 表单提交按钮 -->
+                    <div>
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-9">
+                            <button formmethod="post" formaction="" class="btn btn-primary" type="submit" id="psw-btn">
+                                提交
+                            </button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="sidebar">
+    <include file="Public:sidebar" mode="all"/>
+    >
+</block>
+<block name="js">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var setting = {
+
+                active: function () {
+                    var actives = $('#navbar ul li');
+                    actives.eq(2).addClass('nav-active');
+                },
+
+                isEnoughLength: function (pswlength) {
+                    var psw = $('#new-psw'),
+                            tip = $('#psw-tip-length');
+                    if (psw.val().length < pswlength) {
+                        tip.show();
+                        psw.click(function () {
+                            if (tip.is(":visible")) {
+                                tip.hide();
+                            }
+                        });
+                        return false;
+                    } else {
+                        return true;
+                    }
+                },
+
+                isSamePsw: function () {
+                    var psw = $('#new-psw').val(),
+                            psw2 = $('#new-psw-repeat').val(),
+                            notice = $('#psw-tip'),
+                            length = $('#psw-tip-length');
+                    console.log("第一次输入为： " + psw);
+                    console.log("第二次输入为： " + psw2);
+                    if (psw !== psw2) {
+                        length.hide();
+                        notice.show();
+                        return false;
+                    } else if (psw === psw2) {
+                        notice.hide();
+                        return true;
+                    }
+                }
+
+            };
+
+            setting.active();
+
+            $('#new-psw-repeat').keyup(function () {
+                if (setting.isEnoughLength(6)) {
+                    setting.isSamePsw();
+                }
+            });
+
+            $('#new-psw-repeat').click(function () {
+                setting.isEnoughLength(6);
+            });
+
+            $('#psw-btn').click(function () {
+                if (!(setting.isSamePsw() && setting.isEnoughLength(6))) {
+                    $('#psw-tip').show();
+                    return false;
+                }
+            });
+        });
+    </script>
+</block>

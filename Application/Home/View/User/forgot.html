@@ -1,0 +1,56 @@
+<extend name="Public:base"/>
+<block name="title"><title>找回密码 - Airex</title></block>
+
+<block name="page-main">
+    <div class="post-header">
+        <ol class="breadcrumb">
+            <li><a href="/">Airex</a></li>
+            <li class="active">找回密码</li>
+        </ol>
+    </div>
+
+    <div class="signform">
+        <form action="" method="post">
+            <table cellpadding="5" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td width="120" align="right" valign="top">
+                        <label>电子邮箱</label>
+                    </td>
+                    <td width="auto" align="left">
+                        <input type="email" name="email" class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="120" align="right" valign="top">
+                    </td>
+                    <td width="auto" align="left">
+                        <span>系统将向你帐号设置的电子邮箱发送一封重置密码的电子邮件.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="120" align="right" valign="top">
+                    </td>
+                    <td width="auto" align="left">
+                        <button type="submit">找回密码</button>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+</block>
+
+<block name="pager">
+</block>
+
+<block name="sidebar">
+    <div class="sidebar-module sidebar-module-inset">
+        <h4>还没有帐号？</h4>
+        <p style="font-size:12px;color:grey">Airex是一个基于ThinkPHP的轻型bbs社区.</p>
+        <div align="center"><br>
+
+            <a class="btn btn-default" href="{:U('User/register')}" role="button">前往注册</a><br><br>
+        </div>
+    </div>
+</block>
+

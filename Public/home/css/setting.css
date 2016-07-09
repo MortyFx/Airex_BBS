@@ -1,0 +1,108 @@
+
+.form-control {
+    width: 70%;
+}
+.col-sm-12 {
+    margin-bottom: 2em;
+    padding: 0;
+
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+}
+.col-sm-8 {
+    padding: 0;
+
+    border-radius: 4px;
+}
+.col-sm-10 {
+    font-size: 16px;
+}
+.col-sm-8.blog-main {
+    background-color: #e2e2e2;
+}
+
+
+
+.panel-heading {
+    font-size: 14px;
+    padding: 10px;
+}
+.panel.panel-default {
+    margin-bottom: 0;
+}
+
+
+.col-sm-2.radio {
+    margin-top: -.1em;
+    padding-top: 0;
+    padding-right: 0;
+}
+.col-sm-2.radio label {
+    font-size: .8em;
+}
+.form-group.form-group-sm .col-sm-2.radio {
+    width: 10%;
+}
+.icon-up {
+    margin-top: 1.2em;
+}
+.col-sm-10 img {
+    margin-bottom: .5em;
+    margin-left: .3em;
+}
+.form-horizontal {
+    padding-left: 10%;
+}
+.col-sm-2.radio > label {
+    font-size: 12px;
+}
+.form-group.form-group-sm {
+    position: relative;
+}
+select {
+    position: relative;
+    left: 15px;
+
+    width: 10% !important;
+}
+#submit-btn {
+    float: left;
+
+    margin: 4px 0;
+    margin-left: -8px;
+}
+.social-icon {
+    margin: 0 6px;
+}
+.control-labl {
+    width: 20% !important;
+}
+#avatar-btn {
+    margin: 14px 0;
+}
+#psw-btn {
+    margin-left: -8px;
+}
+.psw {
+    display: inline-block;
+
+    width: 50%;
+}
+.tip {
+    font-size: 14px;
+
+    display: none;
+
+    margin-left: 6px;
+
+    color: red;
+}
+.asdasda {
+    margin-top: 17px;
+}
+.stable{
+    font-size:14px;
+}
+hr{
+    margin: 8px 0;
+}

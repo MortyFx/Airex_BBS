@@ -1,0 +1,5 @@
+.idea/
+Application/Runtime/
+Application/Home/Controller/*.php-tmp
+Application/Home/Modelr/*.php-tmp
+Public/home/img/avatar/

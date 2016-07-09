@@ -1,0 +1,96 @@
+<extend name="Public:base"/>
+<block name="title"><title>注册 - Airex</title></block>
+
+
+<block name="page-main">
+    <div class="post-header">
+        <ol class="breadcrumb">
+            <li><a href="__ROOT__/">Airex</a></li>
+            <li class="active">注册</li>
+        </ol>
+    </div>
+
+    <div class="signform">
+        <input type="hidden" id="username_ajax_url" value="{:U('User/checkUsername')}">
+        <input type="hidden" id="email_ajax_url" value="{:U('User/checkEmail')}">
+        <form action="" method="post">
+            <table cellpadding="5" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td width="120" align="right" valign="top">
+                        <label>用户名</label>
+                    </td>
+                    <td width="auto" align="left">
+                        <div class="input">
+                            <input type="text" id="username" name="username">
+                        </div>
+                        <span>用户名只能包含英文、数字或下划线</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="120" align="right" valign="top">
+                        <label>密码</label>
+                    </td>
+                    <td width="auto" align="left">
+                        <div class="input">
+                            <input type="password" id="password" name="password">
+                        </div>
+                        <span>密码不得小于6位</span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td width="120" align="right" valign="top">
+                        <label>电子邮箱</label>
+                    </td>
+                    <td width="auto" align="left">
+
+                        <div class="input">
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <span>请使用真实的电子邮箱注册</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="120" align="right" valign="top">
+                        <label>验证码</label>
+                    </td>
+                    <td width="auto" align="left">
+                        <div class="input">
+                            <input type="text" name="captcha" id="captcha" placeholder="请输入下图中的验证码" autocomplete="off">
+                        </div>
+                        <br>
+                        <img src="{:U('home/user/captcha')}" id="captcha_img"
+                             onclick="javascript:this.src='__CONTROLLER__/captcha?='+Math.random()">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="120" align="right" valign="top"></td>
+                    <td width="auto" align="left">
+                        <button type="submit" id="reg">注册</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</block>
+
+<block name="sidebar">
+    <div class="sidebar-module sidebar-module-inset">
+        <h4>注册/登录</h4>
+        <p style="font-size:12px;color:grey">Airex是一个基于ThinkPHP的轻型bbs社区.</p>
+        <div align="center"><br>
+
+            <a class="btn btn-default" href="#" role="button" disabled="disabled">正在注册</a><br><br>
+            <p>已注册用户请 <a href="{:U('User/login')}">登录</a></p>
+
+        </div>
+    </div>
+
+</block>
+
+<block name="js">
+
+
+    <script src="__PUBLIC__/home/js/register.js"></script>
+
+</block>

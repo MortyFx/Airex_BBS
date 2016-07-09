@@ -1,0 +1,48 @@
+.with-tips {
+    float: left;
+}
+.blog-main {
+    padding: 0;
+
+    border-radius: 4px;
+}
+.panel-default {
+    margin-bottom: 0;
+}
+
+#theme {
+    border-radius: 4px;
+}
+.blog-main {
+    font-size: 14px;
+}
+#node {
+    width: 25%;
+}
+.hotnode {
+    margin: auto 2px;
+}
+.hotnode-label {
+    margin-right: 8px;
+}
+#submit {
+    float: right;
+}
+.notice {
+    margin-bottom: 5px;
+}
+
+.tip {
+    display: none;
+    float: left;
+
+    margin-left: 1em;
+    padding: 0;
+
+    color: red;
+    border: 0;
+    background-color: white;
+}
+.theme-contain{
+    color:#ccc;
+}

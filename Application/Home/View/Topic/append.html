@@ -1,0 +1,64 @@
+<extend name="Public:base"/>
+<block name="title">追加附言 - Airex</block>
+<block name="css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/addMessage.css">
+</block>
+
+<block name="page-main">
+
+    <!--   面包屑   -->
+    <div class="breadCrumb">
+        <a href="__ROOT__/">Airex</a>&nbsp; › &nbsp;
+        <a href="{:U('Node/topics',['node'=>$data['node']])}">{$data.node}</a>&nbsp; › &nbsp;
+        <a href="{:U('topic/detail',['tid'=>$data['tid']])}">{$data['title']['title']}</a>&nbsp; › &nbsp;增加附言
+    </div>
+    <!--   面包屑 end   -->
+
+    <div class="text-input">
+        <form action="__SELF__" method="post" accept-charset="utf-8">
+            <textarea id="content" rows="20" cols="20" type="text" name="content" class="form-control"
+                      placeholder="附言内容"></textarea>
+            <input type="hidden" name="tid" value="{$data.tid}">
+            <button id="submit" type="submit" class="submit btn btn-primary">提交</button>
+        </form>
+
+        <span id="space" class="tip">请填写附言</span>
+        <span id="max" class="tip">请将附言内容控制在500字以内</span>
+    </div>
+
+    <div class="notice">
+        <div class="about-message">
+            关于为主题创建附言
+        </div>
+        <div class="about-detail">
+            •&nbsp;&nbsp;请在确有必要的情况下再使用此功能为原主题补充信息<br>
+            •&nbsp;&nbsp;每个主题至多可以附加3条附言<br>
+            •&nbsp;&nbsp;附言无法添加图片
+        </div>
+    </div>
+
+</block>
+
+<block name="js">
+    <script>
+
+        $(document).ready(function () {
+            var content = $('#content');
+            $('#submit').click(function () {
+                $('.tip').hide();
+                if (content.val() === "") {
+                    $('#space').show();
+                    return false;
+                } else if (content.val().length > 500) {
+                    $('#max').show();
+                    return false;
+                }
+            });
+
+            $('#content').click(function () {
+                $('.tip').hide();
+            });
+        });
+
+    </script>
+</block>

@@ -1,0 +1,67 @@
+<extend name="Public:base"/>
+<block name="title"><title>重置你的密码 - Airex</title></block>
+
+<block name="page-main">
+    <div class="post-header">
+        <ol class="breadcrumb">
+            <li><a href="/">Airex</a></li>
+            <li class="active">重置你的密码</li>
+        </ol>
+    </div>
+
+    <div class="signform">
+        <form action="" method="post">
+            <table cellpadding="5" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td width="120" align="right" valign="top">
+                        <label>你的帐号</label>
+                    </td>
+                    <td width="auto" align="left">
+                        <label style="margin-left:13px"><b>{$username}</b></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="120" align="right" valign="top">
+                        <label>输入你的新密码</label>
+                    </td>
+                    <td width="auto" align="left">
+                        <input type="password" name="password" class="form-control">
+                        <span>密码不得小于6位</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="120" align="right" valign="top">
+                        <label>重复输入新密码</label>
+                    </td>
+                    <td width="auto" align="left">
+                        <input type="password" name="password_r" class="form-control">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td width="120" align="right" valign="top">
+                    </td>
+                    <td width="auto" align="left">
+                        <button type="submit">重置密码</button>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+</block>
+
+<block name="pager">
+</block>
+
+<block name="sidebar">
+    <div class="sidebar-module sidebar-module-inset">
+        <h4>还没有帐号？</h4>
+        <p style="font-size:12px;color:grey">Airex是一个基于ThinkPHP的轻型bbs社区.</p>
+        <div align="center"><br>
+
+            <a class="btn btn-default" href="{:U('User/register')}" role="button">前往注册</a><br><br>
+        </div>
+    </div>
+</block>
+

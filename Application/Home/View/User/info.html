@@ -1,0 +1,227 @@
+<extend name="Public:base"/>
+<block name="title">
+    <title>{$data.user_name}的用户资料 - Airex</title>
+</block>
+<block name="css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/info.css">
+</block>
+
+<block name="page-main">
+
+    <div class="col-sm-12 header-up">
+        <div class="media">
+            <div class="media-left">
+                <img src="__PUBLIC__{$data.imgpath}" alt="{$data.user_name}" style="border-radius:6px" width=60
+                     height=60></div>
+            <div class="media-body">
+                <div class="media-heading" style="padding-bottom:0;margin-bottom:0">
+					<span>
+						<big>{$data.user_name}</big>
+					</span>
+                    <if condition="($Think.session.user neq null) && ($Think.session.user neq I('get.member'))">
+                        <input type="hidden" id="userID" value="{$data.id}">
+                        <if condition="$data.attention eq 0">
+                            <button type="button" id="addattention" class="btn btn-warning btn-sm">加入特别关注</button>
+                            <else/>
+                            <button type="button" id="addattention" class="btn btn-sm">取消特别关注</button>
+                        </if>
+
+                    </if>
+                    <br>
+                </div>
+
+                <!--  个人简介  -->
+                <div class="person-intro">{$data.resume}</div>
+				<span class="info-number">
+					<span style="font-size:12px">Airex 第 {$data.id} 号会员 | 性别：{$data.gender} | 加入于 {$data.create_time}</span>
+				</span>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 divider-thin"></div>
+    <div class="col-sm-12 heading-down">
+
+        <!--   个人资料网站链接   -->
+        <if condition="$data.url neq ''">
+            <a href="{$data.url}" target="_blank">
+			<span class="social badge">
+				<img width="24" src="__PUBLIC__/home/img/social/social_home.png">
+				&nbsp;
+				<span>{$data.url}</span>
+			</span>
+            </a>
+        </if>
+
+
+    </div>
+    <div class="col-sm-12 divider"></div>
+    <div class="col-sm-12 nav">
+        <nav class="navbar navbar-default navbar-info">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <img class="img-circle" width="23" src="__PUBLIC__{$data.imgpath}"></a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="active">
+                            <a href="{:U('User/Topic',['member'=>I('get.member')])}">查看 {$data.user_name} 创建的所有主题</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <div class="col-sm-12 theme-display">
+        <ul class="list-group">
+
+            <volist name="topics['lists']" id="topic">
+                <li class="list-group-item">
+					<span>
+						<span><a href="{:U('topic/detail',array('tid'=>$topic['tid']))}">{$topic.title}</a></span>
+						<br>
+						<span class="label label-default location"><a
+                                href="{:U('node/topics',array('node'=>$topic['node_name']))}" style="font-size:12px">{$topic.node_name}</a></span>
+						<span class="light-color">
+							&nbsp;•&nbsp; <strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}" style="font-size:12px">{$topic.user_name}</a>
+                            &nbsp;•&nbsp;</strong>
+							<span class="timespan" style="font-size:12px">{$topic.publish_time}</span> &nbsp;<if
+                                condition="$topic.last_comment_user neq null">• &nbsp;<span style="font-size:13px">最后回复来自</span>&nbsp;
+                            <a href="{:U('User/info',array('member'=>$topic['last_comment_user']))}" style="font-size:13px"> <strong>{$topic.last_comment_user}</strong>
+                            </a></if>
+						</span>
+					</span>
+
+                    <a href="#">
+                        <span class="badge">{$topic.comments}</span>
+                    </a>
+                </li>
+            </volist>
+        </ul>
+
+    </div>
+
+
+    <div class="col-sm-12 divider"></div>
+
+    <div class="col-sm-12 info-reply">
+        <div class="panel panel-default">
+            <div class="panel-body reply-recent">
+                <span>{$data.user_name} 最近回复了</span>
+            </div>
+            <if condition="$comments['lists'] eq null">
+                <span style="font-size:14px;margin-left:10px"> 该用户暂未发表任何回复</span>
+            </if>
+            <volist name="comments['lists']" id="comment">
+
+                <div class="panel-heading">
+                    <span>回复了 <a
+                            href="{:U('User/info',array('member'=>$comment['user_name']))}">{$comment.user_name}</a> 创建的主题 ›</span>
+                    <span class="reply-dark"><a href="{:U('topic/detail',array('tid'=>$comment['tid']))}">{$comment.title}</a></span>
+					<span class="info-reply-time">
+						<span class="timespan">{$comment.publish_time}</span>
+					</span>
+                    <img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
+                <div class="panel-body">
+                    <div class="reply-content">
+                        <span>{$comment.content}</span>
+                    </div>
+                </div>
+
+            </volist>
+
+        </div>
+
+        <div class="panel-body reply-footer">
+            <span>» <a href="{:U('User/Reply',['member'=>I('get.member')])}" style="color:#778087;">{$data.user_name}创建的更多回复</a></span>
+        </div>
+    </div>
+
+</block>
+
+<block name="sidebar">
+
+    <include file="Public:sidebar"/>
+
+</block>
+
+<block name="js">
+    <script>
+        $(document).ready(function () {
+            now = new Date();
+            function getTime() {
+                var old = new Date($(this).text().replace(/-/g, '/')),	//Firefox时间格式要求
+                        dif = now - old,
+                        day = Math.floor(dif / (24 * 3600 * 1000)),
+                        hour = Math.floor(dif / (3600 * 1000)),
+                        min = Math.floor(dif / (60 * 1000)),
+                        second = Math.floor(dif / (1000)),
+
+                        nowYear = now.getFullYear(),
+                        oldYear = old.getFullYear(),
+                        nowMonth = now.getMonth(),
+                        oldMonth = old.getMonth();
+
+                if (second < 60) {
+                    $(this).text(second + " 秒前");
+                } else if (min < 60) {
+                    $(this).text(min + ' 分钟前');
+                } else if (hour < 24) {
+                    $(this).text(hour + ' 小时 ' + (min - hour * 60) + ' 分钟前');
+                } else if (day < 32) {
+                    $(this).text(day + ' 天前');
+                } else if (day < 366) {
+                    if (nowYear === oldYear) {
+                        $(this).text(nowMonth - oldMonth + ' 个月前');
+                    } else {
+                        $(this).text(nowMonth - oldMonth + 12 + ' 个月前')
+                    }
+                } else {
+                    $(this).text(now.getFullYear() - old.getFullYear() + " 年前");
+
+                }
+                $(this).show();
+                console.log(now, old);
+            }
+
+            $('.timespan').each(getTime);
+            $("ul li:eq(1)").addClass("nav-active");
+            $('#addattention').bind('click', function () {
+                if ($('#addattention').text() == '加入特别关注') {
+                    var ID = $('#userID').val();
+                    var url = "{:U('User/add_attention')}";
+                    $.post(
+                            url, {userID: ID},
+                            function (data) {
+                                console.log(data);
+                                if (data.status) {
+                                    $('#addattention').text('取消特别关注');
+                                    $('#addattention').removeClass('btn-warning');
+                                } else {
+                                    alert('关注失败');
+                                }
+                            }, "json")
+                } else if ($('#addattention').text() == '取消特别关注') {
+                    var ID = $('#userID').val();
+                    var url = "{:U('User/remove_attention')}";
+                    $.post(
+                            url, {userID: ID},
+                            function (data) {
+                                console.log(data);
+                                if (data.status) {
+                                    $('#addattention').text('加入特别关注');
+                                    $('#addattention').addClass('btn-warning');
+                                } else {
+                                    alert('取消关注失败');
+                                }
+                            }, "json")
+                }
+            });
+        });
+    </script>
+</block>
+

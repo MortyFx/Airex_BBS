@@ -1,0 +1,206 @@
+img.reply {
+    float: right;
+
+    margin: 0 20px;
+}
+img.reply:hover {
+    cursor: pointer;
+}
+.col-sm-8 {
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+}
+.panel-default {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.panel-body {
+    padding: 0;
+}
+
+.img-circle {
+    float: right;
+}
+.small {
+
+}
+
+
+.header{
+
+}
+.panel-footer {
+    position: relative;
+    z-index: 2;
+
+    height: 37px;
+    margin: 14px -15px 0 -15px;
+    padding: 0 10px;
+    padding-top: 1px;
+
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+}
+.panel-footer h6 {
+    font-size: 14px;
+    line-height: 37px;
+}
+.dividers-div {
+    position: relative;
+
+    height: 50px;
+    margin: -10px -20px;
+
+    background-color: #e2e2e2;
+}
+
+
+.panel-heading {
+    margin: 0 -15px;
+    padding: 0;
+}
+.comment-heading {
+    position: relative;
+    z-index: 5;
+
+    border-bottom: 1px solid #e2e2e2;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: white;
+}
+.panel-info > .panel-heading {
+    border-color: #f5f5f5;
+    background-color: #f5f5f5;
+}
+.panel-heading h6 {
+    padding-top: 10px;
+    padding-left: 10px;
+
+    color: #6e6e6e;
+}
+.panel-body {
+    padding: 0;
+}
+
+.reply-info {
+    margin: 0 -15px;
+    padding: 6px 10px !important;
+
+    border-bottom: 1px solid #eee;
+}
+
+h6 > a {
+    color: #b6b6b6;
+}
+.avatar {
+    margin-top: 6px ;
+    padding-bottom: 0;
+    margin-right:2px;
+}
+
+.user-name a {
+    color: gray;
+}
+.user-name{
+    margin:0;
+}
+
+
+.btn btn-primary {
+    float: right;
+}
+
+.well button {
+    float: right;
+}
+
+.sidebar-module .sidebar-module-inset {
+    padding-bottom: 5px;
+}
+
+
+/**bug*/
+.time {
+    font-size: 12px;
+
+    padding-left: 5px;
+
+    color: grey;
+}
+.uname {
+    font-weight: bold;
+
+    text-decoration: none;
+
+    color: #808080;
+}
+.thank-area {
+    float: right;
+}
+.badge {
+    float: right;
+}
+.btn.btn-info.btn-sm {
+    float: right;
+
+    margin: 1em 0 1em 0;
+}
+
+
+.well {
+    margin: 2em 0;
+}
+
+#collapse {
+    display: block;
+}
+
+.media.reply-info {
+    padding: 0 0 1em 0;
+}
+.time {
+    display: none;
+
+    padding-left: 1em;
+
+    color: #9c9898;
+}
+.header-time {
+    display: none;
+}
+.media-body > h6 > span {
+    color: #a2a2a2;
+}
+/**bug*/
+
+
+
+/*a {*/
+/*color: black;*/
+/*}*/
+
+.container-fluid a,
+.blog-footer a {
+    color: #337ab7;
+}
+
+hr {
+    margin: 6px -15px;
+}
+
+index-img {
+    position: relative;
+    top: 10px;
+}
+
+.media-left {
+    position: relative;
+}
+.add-message {
+    margin-left: 6px;
+
+    color: black;
+    background-color: #f0f0f0;
+}

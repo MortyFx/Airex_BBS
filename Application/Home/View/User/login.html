@@ -1,0 +1,91 @@
+<extend name="Public:base"/>
+<block name="title"><title>登录 - Airex</title></block>
+
+<block name="page-main">
+    <div class="post-header">
+        <ol class="breadcrumb">
+            <li><a href="__ROOT__/">Airex</a></li>
+            <li class="active">登录</li>
+        </ol>
+    </div>
+
+    <div class="signform">
+
+        <form action="" method="post">
+            <if condition="$alert_content neq null">
+                <div class="alert alert-warning" id="warning">
+                    <a href="#" class="close" data-dismiss="alert">
+                        &times;
+                    </a>
+                    {$alert_content}
+                </div>
+            </if>
+            <table cellpadding="5" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td width="120" align="right" valign="top">
+                        <label>用户名</label>
+                    </td>
+                    <td width="auto" align="left">
+                        <input type="text" class="form-control" name="username">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="120" align="right" valign="top">
+                        <label>密码</label>
+                    </td>
+                    <td width="auto" align="left">
+                        <input class="form-control" type="password" name="password">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="120" align="right" valign="top">
+
+                    </td>
+                    <td width="auto" align="left">
+
+                        <button type="submit">登录</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="120" align="right" valign="top">
+
+                    </td>
+                    <td width="auto" align="left">
+
+                        <a href="{:U('User/forgot')}">忘记密码了？</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</block>
+
+<block name="pager">
+</block>
+
+<block name="sidebar">
+    <div class="sidebar-module sidebar-module-inset">
+        <h4>还没有帐号？</h4>
+        <p style="font-size:12px;color:grey">Airex是一个基于ThinkPHP的轻型bbs社区.</p>
+        <div align="center"><br>
+
+            <a class="btn btn-default" href="{:U('User/register')}" role="button">前往注册</a>
+            <br><br>
+
+        </div>
+    </div>
+</block>
+
+<block name="js">
+    <script type="text/javascript">
+
+        $(function () {
+            $(".close").click(function () {
+                $("#warning").alert('close');
+            });
+        });
+    </script>
+
+</block>
+

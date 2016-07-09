@@ -1,0 +1,70 @@
+<extend name="Public:base"/>
+<block name="title"><title>创建新主题 - Airex</title></block>
+<block name="css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/new.css">
+</block>
+
+<block name="page-main">
+    <div class="panel panel-default">
+        <div class="panel-heading"><a href="__ROOT__/">Airex</a> › 创建新主题</div>
+        <div class="panel-body">
+            <form method="post" action="{:U('topic/add')}">
+                <div class="form-group">
+                    <label class="with-tips" for="theme">标题</label>
+                    <span class="tip" id="tips-theme">请填写主题</span>
+                    <span class="tip" id="tips-theme-length">主题应在30字内</span>
+                    <input id="theme" class="form-control" placeholder="在这里输入标题" type="text" name="title">
+                </div>
+                <div class="form-group">
+                    <label class="with-tips" for="content">内容</label>
+                    <span class="tip" id="tips-content">请填写内容</span>
+                    <span class="tip" id="tips-content-length">内容应在1000字内</span>
+					<textarea rows="10" cols="20" type="text" name="content" class="form-control" id="content"
+                              placeholder="在这里输入内容"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="node">选择一个节点进行发布</label>
+                    <select id="node" class="form-control" name="node_id">
+                        <volist name="nodes" id="node">
+                            <if condition="$node.id eq $nid">
+                                <option value="{$node.id}" selected="selected">{$node.node_name}</option>
+                                <else/>
+                                <option value="{$node.id}">{$node.node_name}</option>
+                            </if>
+                        </volist>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="hotnode-label">最热节点</label><br>
+                    <div id="node-button">
+                        <volist name="hotNodes" id="hot">
+                            <button type="button" class="btn btn-default btn-sm hotnode">{$hot.node_name}</button>
+                        </volist>
+                    </div>
+
+
+                </div>
+                <!--  提交按钮  -->
+                <button id="submit" class="btn btn-primary">发布主题</button>
+            </form>
+        </div>
+    </div>
+</block>
+
+<block name="sidebar">
+    <div class="panel panel-info">
+        <div class="panel-heading">注意事项</div>
+        <div class="panel-body">
+            <div class="notice">• &nbsp;主题请尽量简洁，突出核心内容</div>
+            <div class="notice">• &nbsp;根据内容为你的主题选择一个节点</div>
+            <div class="notice">• &nbsp;不要涉及危害社会安全的内容</div>
+
+        </div>
+    </div>
+
+</block>
+
+<block name="js">
+    <script src="__PUBLIC__/home/js/new.js" charset="utf-8" async defer></script>
+</block>

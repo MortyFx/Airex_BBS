@@ -1,0 +1,104 @@
+.blog-main {
+    font-size: 14px;
+
+    padding: 0;
+}
+.right-top {
+    float: right;
+}
+.add-favorite {
+    margin: 0 !important;
+    margin-top: -2px !important;
+    padding: 0 !important;
+}
+.block-theme {
+    display: block;
+    float: right;
+
+    margin: 10px 0 0 0  !important;
+}
+.node {
+    font-size: 12px;
+
+    padding: 10px;
+
+    border-bottom: solid 1px #e2e2e2;
+}
+.node-num {
+    display: block;
+}
+.btn-xs,
+.newtheme {
+    margin: 4px;
+}
+.newtheme {
+    display: block;
+    float: left;
+}
+.des {
+    font-size: 12px;
+
+    display: block;
+
+    color: #999;
+}
+.btn-page {
+    padding: 10px;
+
+    border-bottom: solid 1px #e2e2e2;
+}
+#gotopage {
+    display: inline-block;
+
+    width: 50px;
+}
+.label-goto {
+    margin-left: 30px;
+}
+.node-theme {
+    margin: 0;
+    padding: 10px;
+
+    border-bottom: solid 1px #e2e2e2;
+}
+
+.theme-info {
+    font-size: 8px;
+}
+
+h5 {
+    font-size: 16px !important;
+
+    margin: 4px 0 0 0 !important;
+    padding-top: 0 !important;
+}
+.links {
+    color: #778087;
+}
+.theme-contain {
+    color: #ccc;
+}
+.comments-num {
+    float: right;
+
+    margin-top: 14px;
+}
+
+#pre-page,
+#next-page {
+    color: darkblue;
+}
+#next-page {
+    margin-right: 10px;
+}
+.arrow-up {
+    display: none;
+
+    width: 0;
+    height: 0;
+
+    border-top: 10px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid #333;
+    border-left: 8px solid transparent;
+}

@@ -1,0 +1,74 @@
+<extend name="Public:base"/>
+<block name="title">
+    <title>{$data.user_name}的全部回复 - Airex</title>
+</block>
+<block name="css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/info.css">
+</block>
+
+<block name="page-main">
+
+
+    <div class="col-sm-12 nav">
+        <nav class="navbar navbar-default navbar-info">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{:U('User/Info',['member'=>I('get.member')])}">
+                        <img class="img-circle" width="23" src="__PUBLIC__{$data.imgpath}"></a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="active">
+                            <a href="#">{$data.user_name} 创建的所有回复</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <hr>
+    </div>
+
+
+    <div class="col-sm-12 info-reply">
+
+
+        <volist name="comments['lists']" id="comment" empty="该用户暂未发表回复">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span>回复了 <a
+                            href="{:U('User/info',array('member'=>$comment['user_name']))}">{$comment.user_name}</a> 创建的主题 ›</span>
+                    <span class="reply-dark"><a href="{:U('topic/detail',array('tid'=>$comment['tid']))}">{$comment.title}</a></span>
+					<span class="info-reply-time">
+						<span>{$comment.publish_time}</span>
+					</span>
+                    <img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
+                <div class="panel-body">
+                    <div class="reply-content">
+                        <span>{$comment.content}</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </volist>
+
+    </div>
+
+
+</block>
+
+<block name="sidebar">
+
+    <include file="Public:sidebar"/>
+
+</block>
+
+<block name="js">
+    <script>
+        $(document).ready(function () {
+            $("ul li:eq(1)").addClass("nav-active");
+        });
+    </script>
+</block>
+

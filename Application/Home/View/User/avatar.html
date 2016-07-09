@@ -1,0 +1,52 @@
+<extend name="Public:base"/>
+<block name="title">
+    <title>头像修改 - Airex</title>
+</block>
+
+<block name="css">
+
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/setting.css">
+</block>
+
+<block name="page-main">
+
+
+    <div class="col-sm-12">
+
+        <!--      上传头像     -->
+        <div class="panel panel-default">
+            <div class="panel-heading" style="height:32px;">
+                <span style="font-size:14px;margin:10px;line-height:32px;">修改头像</span>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" enctype="multipart/form-data">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-2 control-label icon-up">头像上传</label>
+                        <div class="col-sm-10">
+                            <div>
+                                <img src="__PUBLIC__{$data['userInfo']['imgpath']}"></div>
+                            <input type="file" name="avatar" class="input-sm"><br>
+                            <button formmethod="post" formaction="" class="btn btn-primary" type="submit">
+                                <span>上传并修改头像</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="sidebar">
+    <include file="Public:sidebar" mode="all"/>
+    >
+</block>
+<block name="js">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var actives = $('#navbar ul li');
+            actives.eq(2).addClass('nav-active');
+        });
+    </script>
+</block>

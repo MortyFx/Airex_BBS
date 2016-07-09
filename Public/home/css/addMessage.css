@@ -1,0 +1,49 @@
+.blog-main {
+    padding: 0;
+
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+}
+.breadCrumb {
+    font-size: 14px;
+
+    padding: 8px 12px;
+
+    color: black;
+    border-bottom: solid 1px #e2e2e2;
+}
+.text-input {
+    overflow: hidden;
+
+    padding: 20px;
+
+    border-bottom: solid 1px #e2e2e2;
+}
+.submit {
+    float: right;
+
+    margin: 10px;
+    margin-bottom: 0;
+}
+.notice {
+    font-size: 14px;
+
+    padding: 10px;
+}
+.about-message {
+    color: #c2c2c2;
+}
+.about-detail {
+    margin-top: 4px;
+}
+.tip {
+    font-size: 14px;
+
+    display: none;
+    float: right;
+
+    margin-top: 17px;
+    margin-right: 12px;
+
+    color: red;
+}

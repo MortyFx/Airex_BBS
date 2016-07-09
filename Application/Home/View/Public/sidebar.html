@@ -1,0 +1,101 @@
+<if condition="[mode] eq 'all'">
+    <if condition="null == session('user')">
+        <div class="sidebar-module sidebar-module-inset">
+            <h4>注册/登录</h4>
+            <p style="font-size:12px;color:grey">Airex是一个基于ThinkPHP的轻型bbs社区.</p>
+            <div align="center"><br>
+                <a class="btn btn-default" href="{:U('User/login')}" role="button">立即登陆</a><br><br>
+                <p>没有账号?前往 <a href="{:U('User/register')}">注册</a></p>
+            </div>
+        </div>
+        <else/>
+
+        <div class="sidebar-module sidebar-module-inset">
+            <a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="" class="info">
+                <img src="__PUBLIC__{$sidebar['userInfo']['imgpath']}" alt="..." class="img-rounded">
+            </a>
+            &nbsp;&nbsp;
+            <label><a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="">{$Think.session.user}</a></label>
+
+            <table class="table">
+                <tr>
+                    <td align="center"><a class="info" href="#" title=""><span class="lead">{$sidebar['userInfo']['nodes']}</span>
+                        <br><span>节点收藏</span></a></td>
+                    <td align="center"><a class="info" href="{:U('User/coltopic')}" title="1"><span class="lead">{$sidebar['userInfo']['topics']}</span>
+                        <br><span>主题收藏</span></a></td>
+                    <td align="center"><a class="info" href="{:U('User/attentions')}" title="1"><span class="lead">{$sidebar['userInfo']['attentions']}</span>
+                        <br><span>特别关注</span></a></td>
+                </tr>
+            </table>
+            <hr style="margin: 4px 0">
+            <a href="#" title="">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;<a href="{:U('topic/add')}">创建新主题</a></span>
+            </a>
+            <hr style="margin: 8px 0">
+            <a href="#" title="">
+                <small>{$sidebar['userInfo']['notifications']}条未读提醒</small>
+            </a>
+            <a href="#" title=""><span class="badge badge-balance">财富: {$sidebar['userInfo']['wealth']} 豆</span></a>
+        </div>
+
+    </if>
+
+    <div class="sidebar-module sidebar-module-inset">
+        <h4>最热节点</h4>
+        <volist name="sidebar['hotNodes']" id="hot">
+            <a href="{:U('node/topics',['node'=>$hot['node_name']])}" class="item-node">{$hot.node_name}</a>
+        </volist>
+    </div>
+    <div class="sidebar-module sidebar-module-inset">
+        <h4>站点实况</h4>
+        <p>注册会员： {$sidebar['siteInfo']['member_num']} 位</p>
+        <p>全站主题： {$sidebar['siteInfo']['topic_num']} 条</p>
+        <p>全站回复： {$sidebar['siteInfo']['comment_num']} 条</p>
+    </div>
+
+
+    <else/>
+
+    <if condition="null == session('user')">
+        <div class="sidebar-module sidebar-module-inset">
+            <h4>注册/登录</h4>
+            <p style="font-size:12px;color:grey">Airex是一个基于ThinkPHP的轻型bbs社区.</p>
+            <div align="center"><br>
+                <a class="btn btn-default" href="{:U('User/login')}" role="button">立即登陆</a><br><br>
+                <p>没有账号?前往 <a href="{:U('User/register')}">注册</a></p>
+            </div>
+        </div>
+        <else/>
+
+        <div class="sidebar-module sidebar-module-inset">
+            <a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="" class="info">
+                <img src="__PUBLIC__{$sidebar['userInfo']['imgpath']}" alt="..." class="img-rounded">
+            </a>
+            &nbsp;&nbsp;
+            <label><a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="">{$Think.session.user}</a></label>
+
+            <table class="table">
+                <tr>
+                    <td align="center"><a class="info" href="#" title=""><span class="lead">{$sidebar['userInfo']['nodes']}</span>
+                        <br><span>节点收藏</span></a></td>
+                    <td align="center"><a class="info" href="{:U('User/coltopic')}" title="1"><span class="lead">{$sidebar['userInfo']['topics']}</span>
+                        <br><span>主题收藏</span></a></td>
+                    <td align="center"><a class="info" href="{:U('User/attentions')}" title="1"><span class="lead">{$sidebar['userInfo']['attentions']}</span>
+                        <br><span>特别关注</span></a></td>
+                </tr>
+            </table>
+            <hr style="margin: 4px 0">
+            <a href="#" title="">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;<a href="{:U('topic/add')}">创建新主题</a></span>
+            </a>
+            <hr style="margin: 8px 0">
+            <a href="#" title="">
+                <small>{$sidebar['userInfo']['notifications']}条未读提醒</small>
+            </a>
+            <a href="#" title=""><span class="badge badge-balance">财富: {$sidebar['userInfo']['wealth']} 豆</span></a>
+        </div>
+
+    </if>
+
+</if>
+

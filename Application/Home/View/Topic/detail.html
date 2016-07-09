@@ -1,0 +1,257 @@
+<extend name="Public:base"/>
+<block name="title"><title>{$topicInfo.title} - Airex</title></block>
+<block name="css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/detail.css">
+</block>
+<block name="page-main">
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="__ROOT__/">Ariex</a>&nbsp; › &nbsp;
+                    <!--   节点链接   -->
+                    <a href="{:U('node/topics',['node'=>$topicInfo['node_name']])}"><span class="active">{$topicInfo.node_name}</span></a>
+            </ol>
+            <div class="media header">
+                <div class="media-body">
+                    <h3>{$topicInfo.title}
+                        <h6><span><a href="{:U('User/info',['member'=>$topicInfo['user_name']])}" title="">{$topicInfo.user_name}</a></span>&nbsp;&nbsp;•&nbsp;&nbsp;<span
+                                class="header-time">{$topicInfo.publish_time}</span>&nbsp;&nbsp;•&nbsp;&nbsp;<span>{$topicInfo.comments}条回复</span>&nbsp;&nbsp;•&nbsp;&nbsp;<span>{$topicInfo.hits}次点击</span>
+
+                            <if condition="$topicInfo['user_name'] == session('user')">
+                                <!--   追加留言   -->
+                                <a href="{:U('Topic/append',['tid'=>$tid])}" class="add-message btn btn-default btn-xs">追加附言</a>
+                            </if>
+                        </h6>
+                    </h3>
+                </div>
+                <div class="media-right">
+                    <a href="{:U('User/info',['member'=>$topicInfo['user_name']])}">
+                        <img src="__PUBLIC__/{$topicInfo.imgpath}" alt="" class="img-circle">
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <p class="small">
+                {$topicInfo.content}
+            </p>
+        </div>
+        <div class="panel-footer">
+            <h6>
+  		<span style="float:left">
+					<if condition="$topicInfo.collected eq 0">
+                        <a href="#" id="collect" title="">加入收藏</a>
+                        <else/>
+                        <a href="#" id="collect" title="">取消收藏</a>
+                    </if>
+  			</span>
+                <div class="bdsharebuttonbox" style="margin-top:5px;float:right"><a href="#" class="bds_tsina"
+                                                                                    data-cmd="tsina"
+                                                                                    title="分享到新浪微博"></a><a href="#"
+                                                                                                           class="bds_qzone"
+                                                                                                           data-cmd="qzone"
+                                                                                                           title="分享到QQ空间"></a><a
+                        href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin"
+                                                                                       data-cmd="weixin"
+                                                                                       title="分享到微信"></a></div>
+                <script>window._bd_share_config = {
+                    "common": {
+                        "bdSnsKey": {},
+                        "bdText": "",
+                        "bdMini": "2",
+                        "bdMiniList": false,
+                        "bdPic": "",
+                        "bdStyle": "1",
+                        "bdSize": "16"
+                    }, "share": {}
+                };
+                with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+                <span style="color:grey;float:right">分享到：</span>
+
+            </h6>
+        </div>
+    </div>
+
+    <div class="dividers-div"></div>
+
+    <div class="comment-heading panel-heading" style="">
+        <h6> {$topicInfo.comments} 条回复<span><strong>&nbsp;&nbsp;|&nbsp;&nbsp;</strong></span>
+            <span>
+                <if condition="strtotime($topicInfo['last_comment_time']) eq strtotime($topicInfo['publish_time'])">
+                    暂无回复
+                    <else/>
+                    最后回复时间：{$topicInfo['last_comment_time']}
+                </if>
+            </span>
+        </h6>
+    </div>
+
+    <div class="panel-body">
+
+        <if condition="$commentInfo eq null">
+            <br>
+            <div align="center"><img src="__PUBLIC__/home/img/sofatip.png" height=70 width=350 class="img-responsive">
+            </div>
+        </if>
+
+        <volist name="commentInfo" id="comment" key="key">
+            <div class="media reply-info">
+                <div class="media-left">
+                    <a href="{:U('User/info',['member'=>$comment['user_name']])}">
+                        <img class="media-object img-rounded avatar" src="__PUBLIC__/{$comment.imgpath}" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h5 class="media-heading user-name">
+                        <a href="{:U('User/info',['member'=>$comment['user_name']])}"
+                           class="uname">{$comment.user_name}</a>
+                        <span class="badge">{$key}</span>
+                        <if condition="$comment['user_name'] neq $_SESSION['user']">
+                            <img src="__PUBLIC__/home/img/reply.png" alt="fdsfd" class="reply">
+                            <input type="hidden" name="cuid" value="{$comment.cuid}">
+                            <div class="thank-area" hidden="">
+                                <h6>
+                                    <a href="#" title="" onclick="return confirm('将花费10金币感谢回复者？')">感谢回复者</a>
+                                </h6>
+                            </div>
+                        </if>
+                        <span class="time">{$comment.publish_time}</span>
+                    </h5>
+                    <div class="comment-content">
+                        <small>{$comment.content}</small>
+                    </div>
+                </div>
+            </div>
+        </volist>
+        <div class="media-body">
+            <div class="collapse" id="collapse">
+                <div class="well">
+                    <textarea name="comment" id="comment" class="form-control" rows="5"
+                              placeholder="写下你的回复..."></textarea>
+                    <h5 id="helpBlock" class="help-block" style="margin-top:10px">
+                        <span style="line-height:30px">尽量让你的回复能帮助其他人.</span>
+                        <button type="button" id="subcomment" data-loading-text="发布中..." class="btn btn-primary"
+                                autocomplete="off">
+                            提交回复
+                        </button>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="sidebar">
+
+    <include file="Public:sidebar" mode="all"/>
+
+</block>
+
+<block name="js">
+    <script src="__PUBLIC__/home/js/detail.js" charset="utf-8" async defer></script>
+    <script>
+        $("#subcomment").click(function () {
+            var $btn = $(this).button('loading');
+            var $content = $('#comment').val();
+            if ($content == '') {
+                $('#comment').focus();
+                ;
+                $btn.button('reset');
+                return;
+            }
+            $.post('{:U("Comment/add")}', {
+                tid: '{$tid}',
+                content: $content,
+                type: '0'
+            }, function (data, textStatus, xhr) {
+                if (textStatus == 'success') {
+                    if (data == 'yes') {
+                        window.location.reload();
+                    } else {
+                        alert(data);
+                        $btn.button('reset');
+                    }
+                }
+            })
+        })
+        $(document).ready(function () {
+
+            $('#collect').bind('click', function () {
+                if ($('#collect').text() == '加入收藏') {
+                    var tid = "{$tid}";
+                    var url = "{:U('Topic/collect_topic')}";
+                    $.post(
+                            url, {tid: tid},
+                            function (data) {
+                                console.log();
+                                if (data == '1') {
+                                    $('#collect').text('取消收藏');
+                                } else {
+                                    alert('操作失败');
+                                }
+                            }
+                    );
+                } else if ($('#collect').text() == '取消收藏') {
+                    var tid = "{$tid}";
+                    var url = "{:U('Topic/remove_col_topic')}";
+                    $.post(
+                            url, {tid: tid},
+                            function (data) {
+                                console.log();
+                                if (data == '1') {
+                                    $('#collect').text('加入收藏');
+                                } else {
+                                    alert('操作失败');
+                                }
+                            }
+                    );
+                }
+            });
+
+        });
+
+
+        $('.reply').each(function () {
+            $(this).click(function () {
+                var par = $(this).parents('.reply-info');
+                if (par.children(".media-body").next().hasClass('reply-box')) {
+                    par.children(".media-body").next().remove();
+                } else {
+                    var toUser = $(this).siblings("a.uname").text();
+                    var toUid = $(this).next('input').attr("value");
+                    par.children(".media-body").after('<div class="reply-box"><br/><textarea name="reply" class="form-control rpy-content" rows="2" placeholder="@' + toUser + '："></textarea><button type="button" data-loading-text="回复中..." class="btn btn-info btn-sm rpy-btn" autocomplete="off">回复</button></div>');
+                    $('.rpy-btn').click(function () {
+                        var content = $(this).siblings('textarea')[0].value;
+                        if (content == '') {
+                            return false;
+                        }
+                        //使用长度截取拼接字符串
+                        // var length = "{:U('User/info/')}".length;
+                        // var subUrlStr = "{:U('User/info/')}".substring(0,length-5);
+                        // var urlStr = subUrlStr+'/'+toUser+'.html';
+
+                        //字符串替换
+                        var urlStr = "{:U('User/info/')}".replace('info', 'info/member/' + toUser);
+                        content = '<a href="' + urlStr + '" title="">@' + toUser + '</a>: ' + content;
+                        $.post('{:U("Comment/add")}', {
+                            toUid: toUid,
+                            content: content,
+                            type: '1',
+                            tid: '{$tid}'
+                        }, function (data, textStatus, xhr) {
+                            if (textStatus == 'success') {
+                                if (data != 'yes') {
+                                    alert('回复留言失败');
+                                }
+                                window.location.reload();
+                            }
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+</block>
+

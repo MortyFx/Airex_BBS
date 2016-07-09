@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="__PUBLIC__/home/img/favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/style.css">
+
+    <!--<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/page.css">-->
+    <block name="css"></block>
+    <block name="title"></block>
+    <!-- 标题部分 -->
+</head>
+<body>
+<nav class="navbar  navbar-fixed-top">
+    <div class="logo">
+        <a href="__ROOT__/">
+            <img src="__PUBLIC__/home/img/logo.png" id="logo" border="0" alt="AIREX" width="94" height="30"></a>
+    </div>
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <label>菜单</label>
+            </button>
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <if condition="null == session('user')">
+                    <li>
+                        <a href="__ROOT__/index.php">首页</a>
+                    </li>
+                    <li>
+                        <a href="#">帮助</a>
+                    </li>
+                    <li>
+                        <a href="{:U('User/register')}">注册</a>
+                    </li>
+                    <li>
+                        <a href="{:U('User/login')}">登录</a>
+                    </li>
+                    <else/>
+                    <li>
+                        <a href="__ROOT__/">首页</a>
+                    </li>
+                    <li>
+                        <a href="{:U('User/info',['member'=>$_SESSION['user']])}">{$Think.session.user}</a>
+                    </li>
+                    <li>
+                        <a href="{:U('User/setting')}">设置</a>
+                    </li>
+                    <li>
+                        <a href="#">帮助</a>
+                    </li>
+                    <li>
+                        <a href="{:U('User/logout')}">登出</a>
+                </if>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search..."></form>
+        </div>
+    </div>
+</nav>
+<div class="bggrey">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+
+                <block name="page-main"></block>
+                <!-- 页面主要内容区 --> </div>
+
+            <div class="col-sm-3 blog-sidebar">
+                <img id="toTop" src="" alt="" style="margin-top: 23%">
+                <!-- 返回顶部 -->
+
+                <block name="sidebar"></block>
+                <!-- 侧栏展示部分--> </div>
+        </div>
+    </div>
+</div>
+
+<footer class="blog-footer">
+    <block name="footer">
+        <!-- 页脚部分 -->
+        <p>Developed by Patrick95</p>
+        <p>Copyright (c) AirEX-BBS.</p>
+        <p>
+            <a href="https://github.com/Patrick-95/Airex_BBS.git" title="github" target="_blank">项目Github地址</a>
+        </p>
+    </block>
+</footer>
+
+<script src="http://cdn.bootcss.com/jquery/3.0.0-rc1/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 500) {
+                    $("#toTop").attr('src', '__PUBLIC__/home/img/totop.png');
+                    $("#toTop").fadeIn(200);
+                    $("#toTop").css({position: 'fixed', cursor: 'pointer'});
+                } else {
+                    $("#toTop").fadeOut(0);
+                }
+            });
+        });
+        $('#toTop').click(function () {
+            $('body').animate({scrollTop: 0}, 500);
+        })
+    });
+</script>
+
+<block name="js"></block>           <!-- js部分 -->
+
+</body>
+</html>
