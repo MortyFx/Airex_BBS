@@ -1,6 +1,6 @@
 ﻿## 简介
  
-Airex_BBS是一个基于ThinkPHP框架的轻型BBS社区
+Airex_BBS是一个基于ThinkPHP框架的轻型BBS社区程序
 
 ## 环境要求
 
