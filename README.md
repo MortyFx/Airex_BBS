@@ -4,8 +4,7 @@ Airex_BBS是一个基于ThinkPHP框架的轻型BBS社区
 
 ## 环境要求
 
-PHP 5.4+
-MySQL 5.5+
+PHP 5.4+ / MySQL 5.5+ / ThinkPHP3.2
 
 ## 项目截图
 
@@ -39,6 +38,6 @@ MySQL 5.5+
 ![image](https://github.com/Patrick-95/Airex_BBS/raw/master/screenshots/forgot.png)
 (忘记密码)
 
-.## 联系我
+## 联系我
 E-mail：patrick95@foxmail.com
 Blog：http://muguang.me/
